@@ -33,17 +33,40 @@ def build_model(input_data):
     st.write(df)
     st.markdown(filedownload(df), unsafe_allow_html=True)
 
+# Page title bigger
+st.title('CD73 Inhibitor Bioactivity Prediction App')
+
+st.write("""My analysis is essentially grounded in the concept of a YouTube channel,
+          as exemplified by the work showcased on the platform of DataProfessor,
+          accessible through the following link: https://www.youtube.com/@DataProfessor.""")
+
 # Logo image
 image = Image.open('logo.png')
 
 st.image(image, use_column_width=True)
 
 
-# Page title
-st.markdown("""
-# CD73 blablabla
+#
 
+
+st.write("""
+Tumors, a disease with a high mortality rate worldwide, have become a serious threat to human health.
+             Exonucleotide-5'-nucleotidase (CD73) is an emerging target for tumor therapy.
+             Its inhibition can significantly reduce adenosine levels in the tumor microenvironment.
+             In the immune response, extracellular ATP exerts immune efficacy by activating T cells.
+             However, dead tumor cells release excess ATP, overexpress CD39 and CD73 on the cell membrane and catabolize this ATP to adenosine.
+             This leads to further immunosuppression. There are a number of inhibitors of CD73 currently under investigation.(Zhang et al., 2023). 
 """)
+
+
+
+#add image
+image = Image.open('cd73.png')
+
+st.image(image, use_column_width=True)
+st.write("Image from www.bellbrooklabs.com")
+
+st.write("In this web application, we will be using a machine learning model to predict the bioactivity of CD73 inhibitors.")
 
 # Sidebar
 with st.sidebar.header('1. Upload your CSV data'):
