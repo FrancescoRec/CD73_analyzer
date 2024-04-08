@@ -1,4 +1,5 @@
 # CD73 Inhibitor Bioactivity Prediction App
+https://cd73-analyzer.streamlit.app/
 
 ![Streamlit Logo](logo.png)
 
