@@ -12,7 +12,6 @@ def desc_calc():
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
 
-
 # File download
 def filedownload(df):
     csv = df.to_csv(index=False)
@@ -33,22 +32,23 @@ def build_model(input_data):
     st.write(df)
     st.markdown(filedownload(df), unsafe_allow_html=True)
 
-# Page title bigger
+# Function to reset the page
+def reset_page():
+    st.experimental_rerun()
+
+# Page title
 st.title('CD73 Inhibitor Bioactivity Prediction App')
 
+# Introduction
 st.write("""My analysis is essentially grounded in the concept of a YouTube channel,
           as exemplified by the work showcased on the platform of DataProfessor,
           accessible through the following link: https://www.youtube.com/@DataProfessor.""")
 
 # Logo image
 image = Image.open('logo.png')
-
 st.image(image, use_column_width=True)
 
-
-#
-
-
+# Information about CD73
 st.write("""
 Tumors, a disease with a high mortality rate worldwide, have become a serious threat to human health.
              Exonucleotide-5'-nucleotidase (CD73) is an emerging target for tumor therapy.
@@ -58,45 +58,61 @@ Tumors, a disease with a high mortality rate worldwide, have become a serious th
              This leads to further immunosuppression. There are a number of inhibitors of CD73 currently under investigation.(Zhang et al., 2023). 
 """)
 
-
-
-#add image
-image = Image.open('cd73.png')
-
-st.image(image, use_column_width=True)
+# CD73 image
+cd73_image = Image.open('cd73.png')
+st.image(cd73_image, use_column_width=True)
 st.write("Image from www.bellbrooklabs.com")
 
-st.write("In this web application, we will be using a machine learning model to predict the bioactivity of CD73 inhibitors.")
-
-uploaded_file = st.file_uploader("Upload your input file", type=['txt'])
-st.write("""Your file text need to have the following format:
-    - Column 1: SMILES
-    - Column 2: Molecule name (ID, name or others)
-            """)
-st.markdown("""
-[Example input file](https://github.com/FrancescoRec/CD73_analyzer/blob/main/example_for_app.txt)
-""")
-
-if st.button('Predict'):
-    load_data = pd.read_table(uploaded_file, sep=' ', header=None)
-    load_data.to_csv('molecule.smi', sep='\t', header=False, index=False)
-
-    st.header('**Original input data**')
-    st.write(load_data)
-
-    with st.spinner("Calculating descriptors..."):
-        desc_calc()
-
-    # Read in calculated descriptors and display the dataframe
-    desc = pd.read_csv('descriptors_output.csv')
+st.write("You can test one molecule or multiple molecules by uploading a text file.")
 
 
-    # Read descriptor list used in previously built model
-    Xlist = list(pd.read_csv('descriptor_list.csv').columns)
-    desc_subset = desc[Xlist]
+# Main functionality
+option = st.selectbox("Select an option", ["Predict molecule", "Predict file"])
+if option == "Predict molecule":
+    smiles_input = st.text_input("Enter SMILES string:")
+    molecule_id = st.text_input("Enter molecule ID:", "test_molecule")
+    if st.button('Predict molecule'):
+        smiles_list = [smiles_input]
+        names_list = [molecule_id]
+        load_data = pd.DataFrame(list(zip(smiles_list, names_list)))
+        load_data.to_csv('molecule.smi', sep='\t', header=False, index=False)
 
+        st.header('**Input molecule**')
+        st.write(load_data)
 
-    # Apply trained model to make prediction on query compounds
-    build_model(desc_subset)
-else:
-    st.info('Upload input data to start!')
+        with st.spinner("Calculating descriptors..."):
+            desc_calc()
+
+        desc = pd.read_csv('descriptors_output.csv')
+        Xlist = list(pd.read_csv('descriptor_list.csv').columns)
+        desc_subset = desc[Xlist]
+
+        build_model(desc_subset)
+elif option == "Predict file":
+    uploaded_file = st.file_uploader("Upload your input file", type=['txt'])
+    st.write("""Your file text need to have the following format:
+        - Column 1: SMILES
+        - Column 2: Molecule name (ID, name or others)""")
+    st.markdown("""
+    [Example input file](https://github.com/FrancescoRec/CD73_analyzer/blob/main/example_for_app.txt)
+    """)
+
+    if st.button('Predict file'):
+        load_data = pd.read_table(uploaded_file, sep=' ', header=None)
+        load_data.to_csv('molecule.smi', sep='\t', header=False, index=False)
+
+        st.header('**Original input data**')
+        st.write(load_data)
+
+        with st.spinner("Calculating descriptors..."):
+            desc_calc()
+
+        desc = pd.read_csv('descriptors_output.csv')
+        Xlist = list(pd.read_csv('descriptor_list.csv').columns)
+        desc_subset = desc[Xlist]
+
+        build_model(desc_subset)
+
+# Reset button
+if st.button('Reset'):
+    reset_page()
