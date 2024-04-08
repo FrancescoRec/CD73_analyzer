@@ -14,7 +14,11 @@ The prediction process involves several steps:
 
 3. **Model Training and Export**: The second notebook is utilized for training various models and selecting the best one. The chosen model is then exported as a .pkl file along with the descriptor_list.csv, which describes the non low-variance features used for the model and required by the app.
 
-4. **App Usage**: To use the app, ensure you have the descriptor_output.csv containing the features. The app works with a text file where the first column is the SMILES of the molecule and the second column is the name or ID.
+4. **App Usage**: 
+   - Ensure you have the `descriptor_output.csv` file containing the features.
+   - The app supports two modes of input:
+     1. **Writing your SMILES**: Enter the SMILES string directly into the provided text input field.
+     2. **Uploading a text file**: Upload a text file where the first column represents the SMILES of the molecule, and the second column is the molecule's name or ID. 
 
 ## Quick Start
 
