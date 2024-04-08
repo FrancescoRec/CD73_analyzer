@@ -48,9 +48,7 @@ st.title('CD73 Inhibitor Bioactivity Prediction App')
 st.write("""By Francesco D'Aleo""")
 
 # Introduction
-st.write("""My analysis is essentially grounded in the concept of a YouTube channel,
-          as exemplified by the work showcased on the platform of DataProfessor,
-          accessible through the following link: https://www.youtube.com/@DataProfessor.""")
+st.write("""I found inspiration from the content featured on the YouTube channel located at https://www.youtube.com/@DataProfessor.""")
 
 # Logo image
 image = Image.open('logo.png')
