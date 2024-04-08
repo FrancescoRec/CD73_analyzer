@@ -22,7 +22,10 @@ def filedownload(df):
 # Model building
 def build_model(input_data):
     # Reads in saved regression model
-    load_model = pickle.load(open('cd73_model.pkl', 'rb'))
+    try:
+        load_model = pickle.load(open('cd73_model.pkl', 'rb'))
+    except FileNotFoundError:
+        st.error("Model file 'cd73_model.pkl' not found. Please make sure the file exists.")
     # Apply model to make predictions
     prediction = load_model.predict(input_data)
     st.header('**Prediction output**')
