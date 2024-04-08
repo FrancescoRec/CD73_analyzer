@@ -74,7 +74,7 @@ st.write("""Your file text need to have the following format:
     - Column 2: Molecule name (ID, name or others)
             """)
 st.markdown("""
-[Example input file](https://raw.githubusercontent.com/FrancescoRec/CD73_analyzer/main/example_for_app.txt)
+[Example input file](https://github.com/FrancescoRec/CD73_analyzer/blob/main/example_for_app.txt)
 """)
 
 if st.button('Predict'):
