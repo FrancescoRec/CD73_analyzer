@@ -48,8 +48,9 @@ st.title('CD73 Inhibitor Bioactivity Prediction App')
 st.write("""By Francesco D'Aleo""")
 
 # Introduction
-st.write("""I found inspiration from the content featured on the YouTube channel located at https://www.youtube.com/@DataProfessor.""")
-
+st.write("""This app is inspired from the content featured on the YouTube channel located at https://www.youtube.com/@DataProfessor.""")
+st.write("""The purpose of this app is to predict the bioactivity of CD73 inhibitors using molecular descriptors from the PaDEL-Descriptor software.
+         These features are then used to train a machine learning model on the CD73 dataset. The user can input a molecule in the form of a SMILES string or upload a file containing multiple molecules.""")
 # Logo image
 image = Image.open('logo.png')
 st.image(image, use_column_width=True)
