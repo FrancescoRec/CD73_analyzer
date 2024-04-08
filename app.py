@@ -59,7 +59,7 @@ Tumors, a disease with a high mortality rate worldwide, have become a serious th
 """)
 
 # CD73 image
-cd73_image = Image.open('cd73.png')
+cd73_image = Image.open('CD73.png')
 st.image(cd73_image, use_column_width=True)
 st.write("Image from www.bellbrooklabs.com")
 
