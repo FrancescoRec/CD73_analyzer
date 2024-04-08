@@ -27,7 +27,11 @@ def build_model(input_data):
     except FileNotFoundError:
         st.error("Model file 'cd73_model.pkl' not found. Please make sure the file exists.")
     # Apply model to make predictions
-    prediction = load_model.predict(input_data)
+    try:
+        prediction = load_model.predict(input_data)
+    except Exception as e:
+        st.error(f"Error occurred during prediction: {e}")
+
     st.header('**Prediction output**')
     prediction_output = pd.Series(prediction, name='pIC50')
     molecule_name = pd.Series(load_data[1], name='molecule_name')
