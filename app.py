@@ -69,8 +69,12 @@ st.write("Image from www.bellbrooklabs.com")
 st.write("In this web application, we will be using a machine learning model to predict the bioactivity of CD73 inhibitors.")
 
 uploaded_file = st.file_uploader("Upload your input file", type=['txt'])
+st.write("""Your file text need to have the following format:
+    - Column 1: SMILES
+    - Column 2: Molecule name (ID, name or others)
+            """)
 st.markdown("""
-[Example input file](https://raw.githubusercontent.com/dataprofessor/bioactivity-prediction-app/main/example_acetylcholinesterase.txt)
+[Example input file](https://raw.githubusercontent.com/FrancescoRec/CD73_analyzer/main/example_for_app.txt)
 """)
 
 if st.button('Predict'):
