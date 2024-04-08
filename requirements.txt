@@ -1,5 +1,5 @@
-streamlit==1.33.0 
-pandas==2.2.1 
-base58==2.1.1 
+streamlit
+pandas==1.4.2
+base58==2.0.1
 subprocess
 pickle
