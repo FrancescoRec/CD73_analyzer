@@ -68,16 +68,14 @@ st.write("Image from www.bellbrooklabs.com")
 
 st.write("In this web application, we will be using a machine learning model to predict the bioactivity of CD73 inhibitors.")
 
-# Sidebar
-with st.sidebar.header('1. Upload your CSV data'):
-    uploaded_file = st.sidebar.file_uploader("Upload your input file", type=['txt'])
-    st.sidebar.markdown("""
+uploaded_file = st.file_uploader("Upload your input file", type=['txt'])
+st.markdown("""
 [Example input file](https://raw.githubusercontent.com/dataprofessor/bioactivity-prediction-app/main/example_acetylcholinesterase.txt)
 """)
 
-if st.sidebar.button('Predict'):
+if st.button('Predict'):
     load_data = pd.read_table(uploaded_file, sep=' ', header=None)
-    load_data.to_csv('molecule.smi', sep = '\t', header = False, index = False)
+    load_data.to_csv('molecule.smi', sep='\t', header=False, index=False)
 
     st.header('**Original input data**')
     st.write(load_data)
@@ -101,4 +99,4 @@ if st.sidebar.button('Predict'):
     # Apply trained model to make prediction on query compounds
     build_model(desc_subset)
 else:
-    st.info('Upload input data in the sidebar to start!')
+    st.info('Upload input data to start!')
