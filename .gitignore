@@ -3,7 +3,6 @@
 *.hypothesis
 *.DS_Store
 /myexampleforps.txt
-PaDEL-Descriptor/
 _MACOSX/
 /padel.sh
 __MACOSX/
