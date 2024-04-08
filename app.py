@@ -45,6 +45,7 @@ def reset_page():
 
 # Page title
 st.title('CD73 Inhibitor Bioactivity Prediction App')
+st.write("""By Francesco D'Aleo""")
 
 # Introduction
 st.write("""My analysis is essentially grounded in the concept of a YouTube channel,
